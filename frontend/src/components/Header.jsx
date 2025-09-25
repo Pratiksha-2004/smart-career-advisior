@@ -25,7 +25,6 @@ function Header() {
     { path: '/skills', label: 'Skills' },
     { path: '/careers', label: 'Careers' },
     { path: '/compare', label: 'Compare' },
-    { path: '/chat', label: 'Chat' },
     { path: '/about', label: 'About' }
   ]
 

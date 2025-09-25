@@ -1,5 +1,9 @@
 .about-page {
   min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Hero Section */
@@ -9,9 +13,13 @@
   padding: 4rem 0;
   text-align: center;
   min-height: 60vh;
+  width: 100%;
+  max-width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .hero-content {
@@ -19,6 +27,7 @@
   margin: 0 auto;
   padding: 0 1rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-content h1 {
