@@ -382,9 +382,9 @@
   color: #4285f4;
 }
 
-.social-btn.linkedin:hover {
-  border-color: #0077b5;
-  color: #0077b5;
+.social-btn.github:hover {
+  border-color: #333;
+  color: #333;
 }
 
 .auth-footer {

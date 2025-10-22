@@ -1,34 +1,22 @@
-import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { useAuth } from '../hooks/useAuth';
 import Logo from './Logo'
 import './Header.css'
 
 function Header() {
   const location = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { user, isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
-  // Debug: log auth state changes to help verify auto-refresh behavior during development
-  // Debug: log auth state changes only in development and only when values change.
-  // This prevents spamming the console from frequent re-renders.
-  // eslint-disable-next-line no-console
-  React.useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Header auth state changed:', { isAuthenticated, user });
-    }
-  }, [isAuthenticated, user]);
-  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // This would come from a context/auth provider
+  const [user, setUser] = useState(null) // This would come from a context/auth provider
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
   const handleLogout = () => {
-    logout();
-    // Navigate to home after logout to update UI (SPA navigation)
-    navigate('/');
+    setIsLoggedIn(false)
+    setUser(null)
+    // Clear auth state and navigate
   }
 
   const navLinks = [
@@ -68,23 +56,23 @@ function Header() {
 
           {/* User Actions */}
           <div className="user-actions">
-            {isAuthenticated ? (
+            {isLoggedIn ? (
               <div className="user-menu">
-                <div className="user-info" onClick={() => setShowUserDropdown(v => !v)} style={{ cursor: 'pointer', position: 'relative' }}>
+                <div className="user-info">
                   <span className="user-icon">👤</span>
                   <span>Welcome, {user?.name || 'User'}</span>
-                  <span style={{ marginLeft: 6 }}>▼</span>
-                  {showUserDropdown && (
-                    <div className="user-dropdown" style={{ position: 'absolute', top: '100%', right: 0, background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.12)', borderRadius: 8, minWidth: 140, zIndex: 10 }}>
-                      <Link to="/dashboard" className="dashboard-btn" style={{ display: 'block', padding: '10px 16px', color: '#333', textDecoration: 'none' }} onClick={() => setShowUserDropdown(false)}>
-                        <span>📊</span> Dashboard
-                      </Link>
-                      <button className="logout-btn" style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', color: '#333', textAlign: 'left', cursor: 'pointer' }} onClick={() => { setShowUserDropdown(false); handleLogout(); }}>
-                        <span>🚪</span> Logout
-                      </button>
-                    </div>
-                  )}
                 </div>
+                <Link to="/dashboard" className="dashboard-btn">
+                  <span>📊</span>
+                  Dashboard
+                </Link>
+                <button 
+                  className="logout-btn"
+                  onClick={handleLogout}
+                >
+                  <span>🚪</span>
+                  Logout
+                </button>
               </div>
             ) : (
               <div className="auth-buttons">
@@ -118,7 +106,7 @@ function Header() {
                 </Link>
               </li>
             ))}
-            {!isAuthenticated && (
+            {!isLoggedIn && (
               <>
                 <li>
                   <Link 

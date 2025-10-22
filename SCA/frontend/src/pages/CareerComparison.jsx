@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import './CareerComparison.css'
-import { useAuth } from '../hooks/useAuth'
-import { useToast } from '../components/Toast'
 
 function CareerComparison() {
   const [selectedCareers, setSelectedCareers] = useState([])
   const [comparisonData, setComparisonData] = useState([])
-  const { isAuthenticated } = useAuth();
-  const toast = useToast();
 
   const availableCareers = [
     {
@@ -83,10 +79,6 @@ function CareerComparison() {
   ]
 
   const handleCareerSelect = (career) => {
-    if (!isAuthenticated) {
-      toast.error('Please login to use this feature');
-      return;
-    }
     if (selectedCareers.includes(career.id)) {
       setSelectedCareers(selectedCareers.filter(id => id !== career.id))
       setComparisonData(comparisonData.filter(c => c.id !== career.id))

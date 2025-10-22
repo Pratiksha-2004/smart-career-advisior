@@ -1,17 +1,15 @@
-import React from 'react'
-import { useAuth } from '../hooks/useAuth'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Dashboard.css'
 
 function Dashboard() {
-  const { user: authUser } = useAuth()
-  const user = {
-    name: authUser?.name || 'User',
-    email: authUser?.email || 'john@example.com',
+  const [user] = useState({
+    name: 'John Doe',
+    email: 'john@example.com',
     completedAssessments: 3,
     savedCareers: 8,
     skillsProgress: 65
-  }
+  })
 
   const recentAssessments = [
     {
@@ -194,9 +192,7 @@ function Dashboard() {
                   <h4>Complete JavaScript Course</h4>
                   <p>Boost your JavaScript skills to reach your 90% target</p>
                 </div>
-                <Link to="/careers" className="rec-btn" aria-label="Start learning - go to Careers">
-                  Start Learning
-                </Link>
+                <button className="rec-btn">Start Learning</button>
               </div>
               <div className="recommendation-card">
                 <div className="rec-icon">🤝</div>
@@ -204,9 +200,7 @@ function Dashboard() {
                   <h4>Connect with Mentors</h4>
                   <p>Find experienced professionals in your field of interest</p>
                 </div>
-                <Link to="/chat" className="rec-btn" aria-label="Find mentors - open chat">
-                  Find Mentors
-                </Link>
+                <button className="rec-btn">Find Mentors</button>
               </div>
               <div className="recommendation-card">
                 <div className="rec-icon">📄</div>
@@ -214,9 +208,7 @@ function Dashboard() {
                   <h4>Update Your Resume</h4>
                   <p>Optimize your resume based on your assessment results</p>
                 </div>
-                <Link to="/resume-builder" className="rec-btn" aria-label="Build resume - open resume builder">
-                  Build Resume
-                </Link>
+                <button className="rec-btn">Build Resume</button>
               </div>
             </div>
           </div>

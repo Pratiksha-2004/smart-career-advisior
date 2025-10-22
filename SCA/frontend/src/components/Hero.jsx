@@ -2,15 +2,11 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FiArrowRight, FiPlay, FiX } from 'react-icons/fi'
 import { useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
-import { useToast } from '../components/Toast';
 import './Hero.css'
 
 function Hero() {
-  const toast = useToast();
   const [showVideoModal, setShowVideoModal] = useState(false)
   const [videoError, setVideoError] = useState(false)
-  const { isAuthenticated } = useAuth();
 
   const openVideoModal = () => {
     setShowVideoModal(true)
@@ -108,29 +104,14 @@ function Hero() {
               className="hero-actions"
               variants={itemVariants}
             >
-              <>
-                <Link
-                  to={isAuthenticated ? "/assessment" : "#"}
-                  className="cta-primary"
-                  onClick={e => {
-                    if (!isAuthenticated) {
-                      e.preventDefault();
-                      toast.error('Please login to use this feature');
-                    }
-                  }}
-                >
-                  <span>Start Your Journey</span>
-                  <FiArrowRight className="icon" />
-                </Link>
-                <button
-                  className="cta-secondary"
-                  onClick={isAuthenticated ? openVideoModal : () => toast.error('Please login to use this feature')}
-                  title={isAuthenticated ? undefined : "Login to use this feature"}
-                >
-                  <FiPlay className="play-icon" />
-                  <span>Watch Demo</span>
-                </button>
-              </>
+              <Link to="/assessment" className="cta-primary">
+                <span>Start Your Journey</span>
+                <FiArrowRight className="icon" />
+              </Link>
+              <button className="cta-secondary" onClick={openVideoModal}>
+                <FiPlay className="play-icon" />
+                <span>Watch Demo</span>
+              </button>
             </motion.div>
           </motion.div>
 

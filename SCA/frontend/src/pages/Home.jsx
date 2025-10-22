@@ -245,19 +245,17 @@ function Home() {
                   </div>
                 </div>
                 <div className="rating">
-                  <div className="stars">
-                    {[...Array(5)].map((_, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        ⭐
-                      </motion.span>
-                    ))}
-                  </div>
+                  {[...Array(5)].map((_, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      ⭐
+                    </motion.span>
+                  ))}
                   <span className="rating-text">Trusted by professionals</span>
                 </div>
               </div>

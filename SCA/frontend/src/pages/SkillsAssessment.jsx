@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import './SkillsAssessment.css'
 import CareerComparison from '../components/CareerComparison'
-import { useAuth } from '../hooks/useAuth'
-import { useToast } from '../components/Toast'
 
 function SkillsAssessment() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -11,8 +9,6 @@ function SkillsAssessment() {
   const [results, setResults] = useState(null)
   const [showCareerComparison, setShowCareerComparison] = useState(false)
   const [suggestedCareers, setSuggestedCareers] = useState([])
-  const { isAuthenticated } = useAuth();
-  const toast = useToast();
 
   // Sample careers data with skill requirements
   const careersDatabase = [
@@ -344,10 +340,6 @@ function SkillsAssessment() {
   }
 
   const nextQuestion = () => {
-    if (!isAuthenticated) {
-      toast.error('Please login to use this feature');
-      return;
-    }
     if (currentQuestionIndex < allQuestions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1)
     } else {
@@ -508,13 +500,7 @@ function SkillsAssessment() {
               </button>
               <button 
                 className="view-careers-btn"
-                onClick={() => {
-                  if (!isAuthenticated) {
-                    toast.error('Please login to use this feature');
-                    return;
-                  }
-                  setShowCareerComparison(true)
-                }}
+                onClick={() => setShowCareerComparison(true)}
               >
                 View Matching Careers ({suggestedCareers.length})
               </button>

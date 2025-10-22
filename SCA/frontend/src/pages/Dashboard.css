@@ -2,6 +2,10 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .dashboard-header {
@@ -14,6 +18,35 @@
   backdrop-filter: blur(10px);
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .quick-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    padding: 1rem;
+  }
+  
+  .quick-actions {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .welcome-section h1 {
@@ -32,6 +65,7 @@
 .quick-actions {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .action-btn {
