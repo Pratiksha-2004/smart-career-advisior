@@ -1,0 +1,150 @@
+/* Toast Notification Styles */
+
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+.toast {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+  border-left: 4px solid;
+  min-height: 60px;
+}
+
+.toast-success {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4, #ffffff);
+}
+
+.toast-error {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2, #ffffff);
+}
+
+.toast-warning {
+  border-left-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb, #ffffff);
+}
+
+.toast-info {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff, #ffffff);
+}
+
+.toast-content {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 0.75rem;
+}
+
+.toast-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.toast-message {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-message h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.3;
+}
+
+.toast-message p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.toast-close:hover {
+  color: #374151;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.toast-success .toast-progress {
+  color: #10b981;
+}
+
+.toast-error .toast-progress {
+  color: #ef4444;
+}
+
+.toast-warning .toast-progress {
+  color: #f59e0b;
+}
+
+.toast-info .toast-progress {
+  color: #3b82f6;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .toast-container {
+    top: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    max-width: none;
+  }
+  
+  .toast-content {
+    padding: 0.875rem;
+  }
+  
+  .toast-message h4 {
+    font-size: 0.9rem;
+  }
+  
+  .toast-message p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Animation enhancer for better performance */
+.toast {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
